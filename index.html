@@ -26,7 +26,7 @@
       padding: 10px;
     }
 
-    /* HEADER BANNER AT THE TOP */
+    /* HEADER BANNER AT THE TOP (Animated Pulse) */
     .header-banner {
       font-size: 0.85rem;
       color: #ff2a75;
@@ -34,8 +34,21 @@
       text-align: center;
       margin-bottom: 15px;
       line-height: 1.5;
+      animation: titleGlow 2s ease-in-out infinite alternate;
     }
 
+    @keyframes titleGlow {
+      0% {
+        transform: scale(1);
+        text-shadow: 2px 2px #fff, 0 0 10px #ffb3d9;
+      }
+      100% {
+        transform: scale(1.03);
+        text-shadow: 2px 2px #fff, 0 0 18px #ff4d8d;
+      }
+    }
+
+    /* MAIN CONTAINER (Animated Subtle Bounce) */
     .container {
       width: 100%;
       max-width: 800px;
@@ -52,9 +65,15 @@
       justify-content: center;
       text-align: center;
       backdrop-filter: blur(5px);
+      animation: containerFloat 6s ease-in-out infinite alternate;
     }
 
-    /* Floating Clouds Effect */
+    @keyframes containerFloat {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-8px); }
+    }
+
+    /* FLOATING CLOUDS EFFECT */
     .cloud {
       position: absolute;
       background: rgba(255, 255, 255, 0.8);
@@ -66,11 +85,11 @@
     .cloud2 { width: 160px; height: 50px; bottom: 15%; right: 5%; animation-delay: -3s; }
 
     @keyframes float {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(-15px); }
+      0% { transform: translateY(0px) translateX(0px); }
+      100% { transform: translateY(-15px) translateX(10px); }
     }
 
-    /* Screen Views */
+    /* SCREEN TRANSITIONS (Fade + Zoom In) */
     .screen {
       display: none;
       width: 100%;
@@ -81,9 +100,21 @@
 
     .active {
       display: flex;
+      animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
 
-    /* Passcode Screen */
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.9) translateY(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* PASSCODE SCREEN */
     .passcode-title {
       font-size: 0.8rem;
       margin-bottom: 20px;
@@ -103,10 +134,12 @@
       border-radius: 50%;
       border: 3px solid #ff4d8d;
       background: transparent;
+      transition: all 0.2s ease;
     }
 
     .pin-dot.filled {
       background: #ff4d8d;
+      transform: scale(1.15);
     }
 
     .keypad {
@@ -126,7 +159,7 @@
       color: #ff4d8d;
       cursor: pointer;
       box-shadow: 0 4px 0 #ff4d8d;
-      transition: all 0.1s ease;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 
     .btn-key:active {
@@ -134,7 +167,7 @@
       box-shadow: 0 0 0 #ff4d8d;
     }
 
-    /* Welcome Screen */
+    /* WELCOME SCREEN AVATAR (Bobbing Animation) */
     .pixel-avatar {
       width: 90px;
       height: 90px;
@@ -146,8 +179,15 @@
       align-items: center;
       justify-content: center;
       font-size: 2.2rem;
+      animation: avatarBob 2s ease-in-out infinite alternate;
     }
 
+    @keyframes avatarBob {
+      0% { transform: translateY(0) rotate(-3deg); }
+      100% { transform: translateY(-10px) rotate(3deg); }
+    }
+
+    /* BUTTON ANIMATIONS */
     .btn-pixel {
       background: #ff4d8d;
       color: #fff;
@@ -158,6 +198,14 @@
       cursor: pointer;
       box-shadow: 0 6px 0 #c42b63;
       margin-top: 20px;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      animation: pulseBtn 2s infinite;
+    }
+
+    @keyframes pulseBtn {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+      100% { transform: scale(1); }
     }
 
     .btn-pixel:active {
@@ -165,7 +213,7 @@
       box-shadow: 0 2px 0 #c42b63;
     }
 
-    /* Gifts Screen */
+    /* GIFT BOXES (Wobble Hover Animation) */
     .gift-grid {
       display: flex;
       gap: 15px;
@@ -179,18 +227,27 @@
       padding: 15px;
       cursor: pointer;
       box-shadow: 0 6px 0 #ff4d8d;
-      transition: transform 0.2s;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: giftFloat 3s ease-in-out infinite alternate;
     }
 
-    .gift-box:hover {
-      transform: scale(1.05);
+    .gift-box:nth-child(2) { animation-delay: -1s; }
+    .gift-box:nth-child(3) { animation-delay: -2s; }
+
+    @keyframes giftFloat {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-6px); }
+    }
+
+    .gift-box:active {
+      transform: scale(0.95);
     }
 
     .gift-icon {
       font-size: 2rem;
     }
 
-    /* Content Boxes */
+    /* CONTENT BOXES */
     .content-box {
       background: #fffdf0;
       border: 4px solid #8d6e63;
@@ -211,6 +268,7 @@
       margin-top: 15px;
     }
 
+    /* PHOTO FRAMES (Subtle Tilting & Hover Lift) */
     .photo-frame {
       background: #fff;
       padding: 6px;
@@ -218,10 +276,15 @@
       border-radius: 8px;
       transform: rotate(-2deg);
       cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .photo-frame:nth-child(even) {
       transform: rotate(3deg);
+    }
+
+    .photo-frame:active {
+      transform: scale(1.05) rotate(0deg);
     }
 
     .photo-frame img {
@@ -235,9 +298,10 @@
       margin-top: 20px;
       background: #88d4ab;
       box-shadow: 0 4px 0 #4f9a70;
+      animation: none;
     }
 
-    /* EXPANDED IMAGE POPUP (MODAL) */
+    /* EXPANDED IMAGE MODAL ANIMATION */
     .image-modal {
       display: none;
       position: fixed;
@@ -253,12 +317,22 @@
       padding: 20px;
     }
 
+    .image-modal.active-modal {
+      display: flex;
+      animation: fadeInModal 0.3s ease-out forwards;
+    }
+
+    @keyframes fadeInModal {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
     .image-modal img {
       max-width: 90%;
       max-height: 80%;
       border: 5px solid #fff;
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
     }
 
     .image-modal p {
@@ -341,7 +415,7 @@
     <div id="screen-letter" class="screen">
       <div class="content-box">
         Happy Girlfriend's Day Excel! ✨<br><br>
-        Thank you for making every day brighter with your smile and sweeter with your love. I feel so lucky to have you by my side. Here's to making countless more amazing memories together! I love you so much❤️🙂‍↕️
+        Thank you for making every day brighter with your smile and sweeter with your love. I feel so lucky to have you by my side. Here's to making countless more amazing memories together! 💖
       </div>
       <button class="btn-pixel back-btn" onclick="showScreen('screen-gifts')">Back ↩</button>
     </div>
@@ -437,13 +511,12 @@
     /* IMAGE MODAL FUNCTIONS */
     function expandImage(src) {
       document.getElementById('modal-img').src = src;
-      document.getElementById('image-modal').style.display = 'flex';
+      document.getElementById('image-modal').classList.add('active-modal');
     }
 
     function closeImage() {
-      document.getElementById('image-modal').style.display = 'none';
+      document.getElementById('image-modal').classList.remove('active-modal');
     }
   </script>
 </body>
-  </html>
-  
+</html>
