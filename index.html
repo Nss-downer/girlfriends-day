@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Girlfriend's Day!</title>
+  <title>Happy Girlfriend's Day Excel!</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
     * {
@@ -18,16 +18,28 @@
       background: linear-gradient(180deg, #ffb3d9 0%, #c8b6ff 50%, #b8c0ff 100%);
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       overflow-x: hidden;
       color: #5c3d75;
+      padding: 10px;
+    }
+
+    /* HEADER BANNER AT THE TOP */
+    .header-banner {
+      font-size: 0.85rem;
+      color: #ff2a75;
+      text-shadow: 2px 2px #fff;
+      text-align: center;
+      margin-bottom: 15px;
+      line-height: 1.5;
     }
 
     .container {
       width: 100%;
       max-width: 800px;
-      min-height: 500px;
+      min-height: 480px;
       background: rgba(255, 255, 255, 0.4);
       border: 6px solid #fff;
       border-radius: 20px;
@@ -73,7 +85,7 @@
 
     /* Passcode Screen */
     .passcode-title {
-      font-size: 1rem;
+      font-size: 0.8rem;
       margin-bottom: 20px;
       color: #ff4d8d;
       text-shadow: 2px 2px #fff;
@@ -122,10 +134,10 @@
       box-shadow: 0 0 0 #ff4d8d;
     }
 
-    /* Main Menu / Start Screen */
+    /* Welcome Screen */
     .pixel-avatar {
-      width: 100px;
-      height: 100px;
+      width: 90px;
+      height: 90px;
       background: #ffd6e8;
       border: 4px solid #fff;
       border-radius: 50%;
@@ -133,7 +145,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.5rem;
+      font-size: 2.2rem;
     }
 
     .btn-pixel {
@@ -141,7 +153,7 @@
       color: #fff;
       border: 4px solid #fff;
       padding: 15px 30px;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       border-radius: 12px;
       cursor: pointer;
       box-shadow: 0 6px 0 #c42b63;
@@ -153,18 +165,18 @@
       box-shadow: 0 2px 0 #c42b63;
     }
 
-    /* Gift Selection Screen */
+    /* Gifts Screen */
     .gift-grid {
       display: flex;
-      gap: 20px;
-      margin-top: 30px;
+      gap: 15px;
+      margin-top: 25px;
     }
 
     .gift-box {
       background: #fff;
       border: 4px solid #ff4d8d;
       border-radius: 15px;
-      padding: 20px;
+      padding: 15px;
       cursor: pointer;
       box-shadow: 0 6px 0 #ff4d8d;
       transition: transform 0.2s;
@@ -175,34 +187,33 @@
     }
 
     .gift-icon {
-      font-size: 2.5rem;
+      font-size: 2rem;
     }
 
-    /* Letter / Content View Modal */
+    /* Content Boxes */
     .content-box {
       background: #fffdf0;
       border: 4px solid #8d6e63;
       border-radius: 10px;
-      padding: 25px;
+      padding: 20px;
       max-width: 90%;
       text-align: left;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       line-height: 1.8;
       color: #5d4037;
       box-shadow: 6px 6px 0 #8d6e63;
-      position: relative;
     }
 
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
+      gap: 12px;
       margin-top: 15px;
     }
 
     .photo-frame {
       background: #fff;
-      padding: 8px;
+      padding: 6px;
       border: 3px solid #ff4d8d;
       border-radius: 8px;
       transform: rotate(-2deg);
@@ -214,7 +225,7 @@
 
     .photo-frame img {
       width: 100%;
-      height: 120px;
+      height: 100px;
       object-fit: cover;
       border-radius: 4px;
     }
@@ -227,6 +238,17 @@
   </style>
 </head>
 <body>
+
+  <!-- BACKGROUND MUSIC PLAYER (Plays continuously in loop) -->
+  <!-- Make sure your audio file is named song.mp3 in GitHub or replace with your link -->
+  <audio id="bg-music" loop>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- TITLE HEADER AT THE TOP -->
+  <div class="header-banner">
+    HAPPY GIRLFRIEND'S DAY EXCEL! 💖
+  </div>
 
   <div class="cloud cloud1"></div>
   <div class="cloud cloud2"></div>
@@ -261,26 +283,26 @@
     <!-- 2. WELCOME / START SCREEN -->
     <div id="screen-welcome" class="screen">
       <div class="pixel-avatar">👑</div>
-      <h2 style="font-size: 0.9rem; color: #ff4d8d; margin-bottom: 10px;">HAPPY GIRLFRIEND'S DAY!</h2>
-      <p style="font-size: 0.6rem; line-height: 1.6; max-width: 80%;">Hi my love! I prepared this little surprise special for you...</p>
+      <h2 style="font-size: 0.8rem; color: #ff4d8d; margin-bottom: 10px;">FOR MY EXCEL</h2>
+      <p style="font-size: 0.55rem; line-height: 1.6; max-width: 85%;">I prepared this special surprise just for you...</p>
       <button class="btn-pixel" onclick="showScreen('screen-gifts')">START ♥</button>
     </div>
 
     <!-- 3. GIFT SELECTION SCREEN -->
     <div id="screen-gifts" class="screen">
-      <h3 style="font-size: 0.8rem; color: #ff4d8d;">Choose Your Gift 🎁</h3>
+      <h3 style="font-size: 0.75rem; color: #ff4d8d;">Choose Your Gift 🎁</h3>
       <div class="gift-grid">
         <div class="gift-box" onclick="showScreen('screen-letter')">
           <div class="gift-icon">💌</div>
-          <p style="font-size: 0.5rem; margin-top: 10px;">Letter</p>
+          <p style="font-size: 0.45rem; margin-top: 8px;">Letter</p>
         </div>
         <div class="gift-box" onclick="showScreen('screen-gallery')">
           <div class="gift-icon">🖼️</div>
-          <p style="font-size: 0.5rem; margin-top: 10px;">Memories</p>
+          <p style="font-size: 0.45rem; margin-top: 8px;">Memories</p>
         </div>
-        <div class="gift-box" onclick="showScreen('screen-music')">
+        <div class="gift-box" onclick="showScreen('screen-music-info')">
           <div class="gift-icon">🎵</div>
-          <p style="font-size: 0.5rem; margin-top: 10px;">Song</p>
+          <p style="font-size: 0.45rem; margin-top: 8px;">Song</p>
         </div>
       </div>
     </div>
@@ -288,7 +310,7 @@
     <!-- 4. GIFT 1: LETTER -->
     <div id="screen-letter" class="screen">
       <div class="content-box">
-        Happy Girlfriend's Day to the most incredible person in my world! ✨<br><br>
+        Happy Girlfriend's Day Excel! ✨<br><br>
         Thank you for making every day brighter with your smile and sweeter with your love. I feel so lucky to have you by my side. Here's to making countless more amazing memories together! 💖
       </div>
       <button class="btn-pixel back-btn" onclick="showScreen('screen-gifts')">Back ↩</button>
@@ -296,7 +318,7 @@
 
     <!-- 5. GIFT 2: GALLERY -->
     <div id="screen-gallery" class="screen">
-      <h3 style="font-size: 0.7rem; color: #ff4d8d; margin-bottom: 10px;">Our Favorite Moments 📸</h3>
+      <h3 style="font-size: 0.65rem; color: #ff4d8d; margin-bottom: 10px;">Our Favorite Moments 📸</h3>
       <div class="photo-grid">
         <div class="photo-frame"><img src="https://i.postimg.cc/Pp1MpQJt/IMG-20260713-WA0096.jpg" alt="Us"></div>
         <div class="photo-frame"><img src="https://i.postimg.cc/9RyBRY0f/IMG-20260714-WA0072(1).jpg" alt="Us"></div>
@@ -306,16 +328,12 @@
       <button class="btn-pixel back-btn" onclick="showScreen('screen-gifts')">Back ↩</button>
     </div>
 
-    <!-- 6. GIFT 3: MUSIC PLAYER -->
-    <div id="screen-music" class="screen">
-      <h3 style="font-size: 0.7rem; color: #ff4d8d; margin-bottom: 15px;">Song For You 🎶</h3>
+    <!-- 6. GIFT 3: SONG INFO -->
+    <div id="screen-music-info" class="screen">
+      <h3 style="font-size: 0.65rem; color: #ff4d8d; margin-bottom: 15px;">Now Playing 🎶</h3>
       <div class="content-box" style="text-align: center; width: 100%;">
-        <p style="margin-bottom: 15px;">▶ Now Playing: Our Song</p>
-        <!-- Replace audio source link with your favorite song link or relative file path -->
-        <audio controls style="width: 100%;">
-          <source src="song.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
+        <p style="font-size: 0.6rem; color: #ff4d8d;">✨ Constellations ✨</p>
+        <p style="margin-top: 10px; font-size: 0.5rem;">Playing in the background just for you!</p>
       </div>
       <button class="btn-pixel back-btn" onclick="showScreen('screen-gifts')">Back ↩</button>
     </div>
@@ -323,9 +341,15 @@
   </div>
 
   <script>
-    // SET YOUR PASSCODE HERE (e.g. '0801' for August 1st or your anniversary date)
-    const CORRECT_PIN = "0801"; 
+    const CORRECT_PIN = "0801"; // Set your passcode here (e.g. 0801 for Aug 1st)
     let currentPin = "";
+
+    function playAudio() {
+      const music = document.getElementById('bg-music');
+      if (music.paused) {
+        music.play().catch(e => console.log("Auto-play blocked until user interaction"));
+      }
+    }
 
     function pressKey(num) {
       if (currentPin.length < 4) {
@@ -351,19 +375,20 @@
     }
 
     function checkPin() {
+      playAudio(); // Start background music on unlock
       if (currentPin === CORRECT_PIN) {
         showScreen('screen-welcome');
       } else {
-        alert("Wrong code! Try your anniversary date or special numbers 😉");
+        alert("Wrong code! Try again 😉");
         clearPin();
       }
     }
 
     function showScreen(screenId) {
+      playAudio(); // Ensures audio stays active
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       document.getElementById(screenId).classList.add('active');
     }
   </script>
 </body>
-  </html>
-  
+</html>
