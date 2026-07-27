@@ -215,6 +215,27 @@
       box-shadow: 0 0 10px 2px rgba(255, 77, 141, 0.8);
     }
 
+    /* PIN HINT (shown after a wrong guess) */
+    .pin-hint {
+      font-size: 0.5rem;
+      color: #ff4d8d;
+      margin-bottom: 15px;
+      margin-top: -10px;
+      line-height: 1.6;
+      max-width: 220px;
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease, height 0.3s ease, margin-top 0.3s ease;
+    }
+
+    .pin-hint.show {
+      opacity: 1;
+      height: auto;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
     .keypad {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -516,6 +537,7 @@
         <div class="pin-dot"></div>
         <div class="pin-dot"></div>
       </div>
+      <p id="pin-hint" class="pin-hint">Hint: The date I asked you to be my girlfriend 💕</p>
       <div class="keypad">
         <button type="button" class="btn-key" data-digit="1">1</button>
         <button type="button" class="btn-key" data-digit="2">2</button>
@@ -610,6 +632,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     const CORRECT_PIN = "0801";
     let currentPin = "";
+    let hintTimeout = null;
 
     /* ================= FLOATING HEARTS GENERATOR ================= */
     const heartsBg = document.getElementById('hearts-bg');
@@ -666,11 +689,33 @@
       updateDots();
     }
 
+    function showHint() {
+      const pinHint = document.getElementById('pin-hint');
+      if (!pinHint) return;
+      pinHint.classList.add('show');
+
+      if (hintTimeout) clearTimeout(hintTimeout);
+      hintTimeout = setTimeout(() => {
+        pinHint.classList.remove('show');
+      }, 4000);
+    }
+
+    function hideHint() {
+      const pinHint = document.getElementById('pin-hint');
+      if (!pinHint) return;
+      if (hintTimeout) {
+        clearTimeout(hintTimeout);
+        hintTimeout = null;
+      }
+      pinHint.classList.remove('show');
+    }
+
     function checkPin() {
       playAudio();
       const pinDisplay = document.getElementById('pin-display');
 
       if (currentPin === CORRECT_PIN) {
+        hideHint();
         if (pinDisplay) pinDisplay.classList.add('pin-success');
         setTimeout(() => {
           if (pinDisplay) pinDisplay.classList.remove('pin-success');
@@ -678,6 +723,7 @@
         }, 350);
       } else {
         if (pinDisplay) pinDisplay.classList.add('shake');
+        showHint();
         setTimeout(() => {
           if (pinDisplay) pinDisplay.classList.remove('shake');
           clearPin();
