@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Girlfriend's Day!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Press Start 2P', cursive;
+      user-select: none;
+    }
+
+    body {
+      background: linear-gradient(180deg, #ffb3d9 0%, #c8b6ff 50%, #b8c0ff 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      color: #5c3d75;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      min-height: 500px;
+      background: rgba(255, 255, 255, 0.4);
+      border: 6px solid #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      position: relative;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      backdrop-filter: blur(5px);
+    }
+
+    /* Floating Clouds Effect */
+    .cloud {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50px;
+      z-index: -1;
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    .cloud1 { width: 120px; height: 40px; top: 10%; left: 5%; }
+    .cloud2 { width: 160px; height: 50px; bottom: 15%; right: 5%; animation-delay: -3s; }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-15px); }
+    }
+
+    /* Screen Views */
+    .screen {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .active {
+      display: flex;
+    }
+
+    /* Passcode Screen */
+    .passcode-title {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      color: #ff4d8d;
+      text-shadow: 2px 2px #fff;
+    }
+
+    .pin-display {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .pin-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 3px solid #ff4d8d;
+      background: transparent;
+    }
+
+    .pin-dot.filled {
+      background: #ff4d8d;
+    }
+
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 240px;
+    }
+
+    .btn-key {
+      background: #ffd6e8;
+      border: 3px solid #ff4d8d;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 0.9rem;
+      color: #ff4d8d;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #ff4d8d;
+      transition: all 0.1s ease;
+    }
+
+    .btn-key:active {
+      transform: translateY(4px);
+      box-shadow: 0 0 0 #ff4d8d;
+    }
+
+    /* Main Menu / Start Screen */
+    .pixel-avatar {
+      width: 100px;
+      height: 100px;
+      background: #ffd6e8;
+      border: 4px solid #fff;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .btn-pixel {
+      background: #ff4d8d;
+      color: #fff;
+      border: 4px solid #fff;
+      padding: 15px 30px;
+      font-size: 0.9rem;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 6px 0 #c42b63;
+      margin-top: 20px;
+    }
+
+    .btn-pixel:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #c42b63;
+    }
+
+    /* Gift Selection Screen */
+    .gift-grid {
+      display: flex;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .gift-box {
+      background: #fff;
+      border: 4px solid #ff4d8d;
+      border-radius: 15px;
+      padding: 20px;
+      cursor: pointer;
+      box-shadow: 0 6px 0 #ff4d8d;
+      transition: transform 0.2s;
+    }
+
+    .gift-box:hover {
+      transform: scale(1.05);
+    }
+
+    .gift-icon {
+      font-size: 2.5rem;
+    }
+
+    /* Letter / Content View Modal */
+    .content-box {
+      background: #fffdf0;
+      border: 4px solid #8d6e63;
+      border-radius: 10px;
+      padding: 25px;
+      max-width: 90%;
+      text-align: left;
+      font-size: 0.7rem;
+      line-height: 1.8;
+      color: #5d4037;
+      box-shadow: 6px 6px 0 #8d6e63;
+      position: relative;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .photo-frame {
+      background: #fff;
+      padding: 8px;
+      border: 3px solid #ff4d8d;
+      border-radius: 8px;
+      transform: rotate(-2deg);
+    }
+
+    .photo-frame:nth-child(even) {
+      transform: rotate(3deg);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .back-btn {
+      margin-top: 20px;
+      background: #88d4ab;
+      box-shadow: 0 4px 0 #4f9a70;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+
+  <div class="container">
+
+    <!-- 1. PASSCODE SCREEN -->
+    <div id="screen-passcode" class="screen active">
+      <div class="passcode-title">Guess the passcode 💕</div>
+      <div class="pin-display">
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+      </div>
+      <div class="keypad">
+        <button class="btn-key" onclick="pressKey(1)">1</button>
+        <button class="btn-key" onclick="pressKey(2)">2</button>
+        <button class="btn-key" onclick="pressKey(3)">3</button>
+        <button class="btn-key" onclick="pressKey(4)">4</button>
+        <button class="btn-key" onclick="pressKey(5)">5</button>
+        <button class="btn-key" onclick="pressKey(6)">6</button>
+        <button class="btn-key" onclick="pressKey(7)">7</button>
+        <button class="btn-key" onclick="pressKey(8)">8</button>
+        <button class="btn-key" onclick="pressKey(9)">9</button>
+        <button class="btn-key" onclick="clearPin()">C</button>
+        <button class="btn-key" onclick="pressKey(0)">0</button>
+        <button class="btn-key" onclick="checkPin()">♥</button>
+      </div>
+    </div>
+
+    <!-- 2. WELCOME / START SCREEN -->
+    <div id="screen-welcome" class="screen">
+      <div class="pixel-avatar">👑</div>
+      <h2 style="font-size: 0.9rem; color: #ff4d8d; margin-bottom: 10px;">HAPPY GIRLFRIEND'S DAY!</h2>
+      <p style="font-size: 0.6rem; line-height: 1.6; max-width: 80%;">Hi my love! I prepared this little surprise special for you...</p>
+      <button class="btn-pixel" onclick="showScreen('screen-gifts')">START ♥</button>
+    </div>
+
+    <!-- 3. GIFT SELECTION SCREEN -->
+    <div id="screen-gifts" class="screen">
+      <h3 style="font-size: 0.8rem; color: #ff4d8d;">Choose Your Gift 🎁</h3>
+      <div class="gift-grid">
+        <div class="gift-box" onclick="showScreen('screen-letter')">
+          <div class="gift-icon">💌</div>
+          <p style="font-size: 0.5rem; margin-top: 10px;">Letter</p>
+        </div>
+        <div class="gift-box" onclick="showScreen('screen-gallery')">
+          <div class="gift-icon">🖼️</div>
+          <p style="font-size: 0.5rem; margin-top: 10px;">Memories</p>
+        </div>
+        <div class="gift-box" onclick="showScreen('screen-music')">
+          <div class="gift-icon">🎵</div>
+          <p style="font-size: 0.5rem; margin-top: 10px;">Song</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. GIFT 1: LETTER -->
+    <div id="screen-letter" class="screen">
+      <div class="content-box">
+        Happy Girlfriend's Day to the most incredible person in my world! ✨<br><br>
+        Thank you for making every day brighter with your smile and sweeter with your love. I feel so lucky to have you by my side. Here's to making countless more amazing memories together! 💖
+      </div>
+      <button class="btn-pixel back-btn" onclick="showScreen('screen-gifts')">Back ↩</button>
+    </div>
+
+    <!-- 5. GIFT 2: GALLERY -->
+    <div id="screen-gallery" class="screen">
+      <h3 style="font-size: 0.7rem; color: #ff4d8d; margin-bottom: 10px;">Our Favorite Moments 📸</h3>
+      <div class="photo-grid">
+        <div class="photo-frame"><img src="https://postimg.cc/Pp1MpQJt" alt="Us"></div>
+        <div class="photo-frame"><img src="https://postimg.cc/9RyBRY0f" alt="Us"></div>
+        <div class="photo-frame"><img src="https://postimg.cc/CBb4Bs55" alt="Us"></div>
+        <div class="photo-frame"><img src="https://postimg.cc/tZFzZNJT" alt="Us"></div>
+      </div>
+      <button class="btn-pixel back-btn" onclick="showScreen('screen-gifts')">Back ↩</button>
+    </div>
+
+    <!-- 6. GIFT 3: MUSIC PLAYER -->
+    <div id="screen-music" class="screen">
+      <h3 style="font-size: 0.7rem; color: #ff4d8d; margin-bottom: 15px;">Song For You 🎶</h3>
+      <div class="content-box" style="text-align: center; width: 100%;">
+        <p style="margin-bottom: 15px;">▶ Now Playing: Our Song</p>
+        <!-- Replace audio source link with your favorite song link or relative file path -->
+        <audio controls style="width: 100%;">
+          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+      <button class="btn-pixel back-btn" onclick="showScreen('screen-gifts')">Back ↩</button>
+    </div>
+
+  </div>
+
+  <script>
+    // SET YOUR PASSCODE HERE (e.g. '0801' for August 1st or your anniversary date)
+    const CORRECT_PIN = "0801"; 
+    let currentPin = "";
+
+    function pressKey(num) {
+      if (currentPin.length < 4) {
+        currentPin += num;
+        updateDots();
+      }
+    }
+
+    function clearPin() {
+      currentPin = "";
+      updateDots();
+    }
+
+    function updateDots() {
+      const dots = document.querySelectorAll('.pin-dot');
+      dots.forEach((dot, idx) => {
+        if (idx < currentPin.length) {
+          dot.classList.add('filled');
+        } else {
+          dot.classList.remove('filled');
+        }
+      });
+    }
+
+    function checkPin() {
+      if (currentPin === CORRECT_PIN) {
+        showScreen('screen-welcome');
+      } else {
+        alert("Wrong code! Try your anniversary date or special numbers 😉");
+        clearPin();
+      }
+    }
+
+    function showScreen(screenId) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(screenId).classList.add('active');
+    }
+  </script>
+</body>
+  </html>
+  
