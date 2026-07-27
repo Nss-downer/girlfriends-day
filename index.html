@@ -217,6 +217,7 @@
       border: 3px solid #ff4d8d;
       border-radius: 8px;
       transform: rotate(-2deg);
+      cursor: pointer;
     }
 
     .photo-frame:nth-child(even) {
@@ -235,12 +236,41 @@
       background: #88d4ab;
       box-shadow: 0 4px 0 #4f9a70;
     }
+
+    /* EXPANDED IMAGE POPUP (MODAL) */
+    .image-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .image-modal img {
+      max-width: 90%;
+      max-height: 80%;
+      border: 5px solid #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+
+    .image-modal p {
+      color: #fff;
+      font-size: 0.6rem;
+      margin-top: 15px;
+    }
   </style>
 </head>
 <body>
 
-  <!-- BACKGROUND MUSIC PLAYER (Plays continuously in loop) -->
-  <!-- Make sure your audio file is named song.mp3 in GitHub or replace with your link -->
+  <!-- BACKGROUND MUSIC PLAYER -->
   <audio id="bg-music" loop>
     <source src="song.mp3" type="audio/mpeg">
   </audio>
@@ -316,14 +346,22 @@
       <button class="btn-pixel back-btn" onclick="showScreen('screen-gifts')">Back ↩</button>
     </div>
 
-    <!-- 5. GIFT 2: GALLERY -->
+    <!-- 5. GIFT 2: GALLERY WITH EXPANDABLE IMAGES -->
     <div id="screen-gallery" class="screen">
       <h3 style="font-size: 0.65rem; color: #ff4d8d; margin-bottom: 10px;">Our Favorite Moments 📸</h3>
       <div class="photo-grid">
-        <div class="photo-frame"><img src="https://i.postimg.cc/Pp1MpQJt/IMG-20260713-WA0096.jpg" alt="Us"></div>
-        <div class="photo-frame"><img src="https://i.postimg.cc/9RyBRY0f/IMG-20260714-WA0072(1).jpg" alt="Us"></div>
-        <div class="photo-frame"><img src="https://i.postimg.cc/CBb4Bs55/IMG-20260720-WA0023(1).jpg" alt="Us"></div>
-        <div class="photo-frame"><img src="https://i.postimg.cc/tZFzZNJT/IMG-20260722-WA0093.jpg" alt="Us"></div>
+        <div class="photo-frame" onclick="expandImage('https://i.postimg.cc/Pp1MpQJt/IMG-20260713-WA0096.jpg')">
+          <img src="https://i.postimg.cc/Pp1MpQJt/IMG-20260713-WA0096.jpg" alt="Us">
+        </div>
+        <div class="photo-frame" onclick="expandImage('https://i.postimg.cc/9RyBRY0f/IMG-20260714-WA0072(1).jpg')">
+          <img src="https://i.postimg.cc/9RyBRY0f/IMG-20260714-WA0072(1).jpg" alt="Us">
+        </div>
+        <div class="photo-frame" onclick="expandImage('https://i.postimg.cc/CBb4Bs55/IMG-20260720-WA0023(1).jpg')">
+          <img src="https://i.postimg.cc/CBb4Bs55/IMG-20260720-WA0023(1).jpg" alt="Us">
+        </div>
+        <div class="photo-frame" onclick="expandImage('https://i.postimg.cc/tZFzZNJT/IMG-20260722-WA0093.jpg')">
+          <img src="https://i.postimg.cc/tZFzZNJT/IMG-20260722-WA0093.jpg" alt="Us">
+        </div>
       </div>
       <button class="btn-pixel back-btn" onclick="showScreen('screen-gifts')">Back ↩</button>
     </div>
@@ -332,7 +370,7 @@
     <div id="screen-music-info" class="screen">
       <h3 style="font-size: 0.65rem; color: #ff4d8d; margin-bottom: 15px;">Now Playing 🎶</h3>
       <div class="content-box" style="text-align: center; width: 100%;">
-        <p style="font-size: 0.6rem; color: #ff4d8d;">✨ Constellations ✨</p>
+        <p style="font-size: 0.6rem; color: #ff4d8d;">✨ Bake Shop ✨</p>
         <p style="margin-top: 10px; font-size: 0.5rem;">Playing in the background just for you!</p>
       </div>
       <button class="btn-pixel back-btn" onclick="showScreen('screen-gifts')">Back ↩</button>
@@ -340,8 +378,14 @@
 
   </div>
 
+  <!-- POPUP CONTAINER FOR FULLSCREEN IMAGE VIEW -->
+  <div id="image-modal" class="image-modal" onclick="closeImage()">
+    <img id="modal-img" src="" alt="Expanded View">
+    <p>Tap anywhere to close ✖</p>
+  </div>
+
   <script>
-    const CORRECT_PIN = "0801"; // Set your passcode here (e.g. 0801 for Aug 1st)
+    const CORRECT_PIN = "0801"; 
     let currentPin = "";
 
     function playAudio() {
@@ -375,7 +419,7 @@
     }
 
     function checkPin() {
-      playAudio(); // Start background music on unlock
+      playAudio();
       if (currentPin === CORRECT_PIN) {
         showScreen('screen-welcome');
       } else {
@@ -385,10 +429,21 @@
     }
 
     function showScreen(screenId) {
-      playAudio(); // Ensures audio stays active
+      playAudio();
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       document.getElementById(screenId).classList.add('active');
     }
+
+    /* IMAGE MODAL FUNCTIONS */
+    function expandImage(src) {
+      document.getElementById('modal-img').src = src;
+      document.getElementById('image-modal').style.display = 'flex';
+    }
+
+    function closeImage() {
+      document.getElementById('image-modal').style.display = 'none';
+    }
   </script>
 </body>
-</html>
+  </html>
+  
