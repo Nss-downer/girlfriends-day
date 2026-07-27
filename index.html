@@ -517,18 +517,18 @@
         <div class="pin-dot"></div>
       </div>
       <div class="keypad">
-        <button class="btn-key" onclick="pressKey(1)">1</button>
-        <button class="btn-key" onclick="pressKey(2)">2</button>
-        <button class="btn-key" onclick="pressKey(3)">3</button>
-        <button class="btn-key" onclick="pressKey(4)">4</button>
-        <button class="btn-key" onclick="pressKey(5)">5</button>
-        <button class="btn-key" onclick="pressKey(6)">6</button>
-        <button class="btn-key" onclick="pressKey(7)">7</button>
-        <button class="btn-key" onclick="pressKey(8)">8</button>
-        <button class="btn-key" onclick="pressKey(9)">9</button>
-        <button class="btn-key" onclick="clearPin()">C</button>
-        <button class="btn-key" onclick="pressKey(0)">0</button>
-        <button class="btn-key" onclick="checkPin()">♥</button>
+        <button type="button" class="btn-key" data-digit="1">1</button>
+        <button type="button" class="btn-key" data-digit="2">2</button>
+        <button type="button" class="btn-key" data-digit="3">3</button>
+        <button type="button" class="btn-key" data-digit="4">4</button>
+        <button type="button" class="btn-key" data-digit="5">5</button>
+        <button type="button" class="btn-key" data-digit="6">6</button>
+        <button type="button" class="btn-key" data-digit="7">7</button>
+        <button type="button" class="btn-key" data-digit="8">8</button>
+        <button type="button" class="btn-key" data-digit="9">9</button>
+        <button type="button" class="btn-key" data-action="clear">C</button>
+        <button type="button" class="btn-key" data-digit="0">0</button>
+        <button type="button" class="btn-key" data-action="check">♥</button>
       </div>
     </div>
 
@@ -537,22 +537,22 @@
       <div class="pixel-avatar">👑</div>
       <h2 style="font-size: 0.8rem; color: #ff4d8d; margin-bottom: 10px;">FOR MY EXCEL</h2>
       <p style="font-size: 0.55rem; line-height: 1.6; max-width: 85%;">I prepared this special surprise just for you...</p>
-      <button class="btn-pixel" onclick="showScreen('screen-gifts')">START ♥</button>
+      <button type="button" class="btn-pixel" data-goto="screen-gifts">START ♥</button>
     </div>
 
     <!-- 3. GIFT SELECTION SCREEN -->
     <div id="screen-gifts" class="screen">
       <h3 style="font-size: 0.75rem; color: #ff4d8d;">Choose Your Gift 🎁</h3>
       <div class="gift-grid">
-        <div class="gift-box" onclick="showScreen('screen-letter')">
+        <div class="gift-box" data-goto="screen-letter">
           <div class="gift-icon">💌</div>
           <p style="font-size: 0.45rem; margin-top: 8px;">Letter</p>
         </div>
-        <div class="gift-box" onclick="showScreen('screen-gallery')">
+        <div class="gift-box" data-goto="screen-gallery">
           <div class="gift-icon">🖼️</div>
           <p style="font-size: 0.45rem; margin-top: 8px;">Memories</p>
         </div>
-        <div class="gift-box" onclick="showScreen('screen-music-info')">
+        <div class="gift-box" data-goto="screen-music-info">
           <div class="gift-icon">🎵</div>
           <p style="font-size: 0.45rem; margin-top: 8px;">Song</p>
         </div>
@@ -565,27 +565,27 @@
         Happy Girlfriend's Day Excel! ✨<br><br>
         Thank you for making every day brighter with your smile and sweeter with your love. I feel so lucky to have you by my side. Here's to making countless more amazing memories together! 💖
       </div>
-      <button class="btn-pixel back-btn" onclick="showScreen('screen-gifts')">Back ↩</button>
+      <button type="button" class="btn-pixel back-btn" data-goto="screen-gifts">Back ↩</button>
     </div>
 
     <!-- 5. GIFT 2: GALLERY WITH EXPANDABLE IMAGES -->
     <div id="screen-gallery" class="screen">
       <h3 style="font-size: 0.65rem; color: #ff4d8d; margin-bottom: 10px;">Our Favorite Moments 📸</h3>
       <div class="photo-grid">
-        <div class="photo-frame" onclick="expandImage('https://i.postimg.cc/Pp1MpQJt/IMG-20260713-WA0096.jpg')">
+        <div class="photo-frame" data-img="https://i.postimg.cc/Pp1MpQJt/IMG-20260713-WA0096.jpg">
           <img src="https://i.postimg.cc/Pp1MpQJt/IMG-20260713-WA0096.jpg" alt="Us">
         </div>
-        <div class="photo-frame" onclick="expandImage('https://i.postimg.cc/9RyBRY0f/IMG-20260714-WA0072(1).jpg')">
+        <div class="photo-frame" data-img="https://i.postimg.cc/9RyBRY0f/IMG-20260714-WA0072(1).jpg">
           <img src="https://i.postimg.cc/9RyBRY0f/IMG-20260714-WA0072(1).jpg" alt="Us">
         </div>
-        <div class="photo-frame" onclick="expandImage('https://i.postimg.cc/CBb4Bs55/IMG-20260720-WA0023(1).jpg')">
+        <div class="photo-frame" data-img="https://i.postimg.cc/CBb4Bs55/IMG-20260720-WA0023(1).jpg">
           <img src="https://i.postimg.cc/CBb4Bs55/IMG-20260720-WA0023(1).jpg" alt="Us">
         </div>
-        <div class="photo-frame" onclick="expandImage('https://i.postimg.cc/tZFzZNJT/IMG-20260722-WA0093.jpg')">
+        <div class="photo-frame" data-img="https://i.postimg.cc/tZFzZNJT/IMG-20260722-WA0093.jpg">
           <img src="https://i.postimg.cc/tZFzZNJT/IMG-20260722-WA0093.jpg" alt="Us">
         </div>
       </div>
-      <button class="btn-pixel back-btn" onclick="showScreen('screen-gifts')">Back ↩</button>
+      <button type="button" class="btn-pixel back-btn" data-goto="screen-gifts">Back ↩</button>
     </div>
 
     <!-- 6. GIFT 3: SONG INFO -->
@@ -595,18 +595,19 @@
         <p style="font-size: 0.6rem; color: #ff4d8d;"><span class="music-note">✨</span> Bake Shop <span class="music-note">✨</span></p>
         <p style="margin-top: 10px; font-size: 0.5rem;">Playing in the background just for you!</p>
       </div>
-      <button class="btn-pixel back-btn" onclick="showScreen('screen-gifts')">Back ↩</button>
+      <button type="button" class="btn-pixel back-btn" data-goto="screen-gifts">Back ↩</button>
     </div>
 
   </div>
 
   <!-- POPUP CONTAINER FOR FULLSCREEN IMAGE VIEW -->
-  <div id="image-modal" class="image-modal" onclick="closeImage()">
+  <div id="image-modal" class="image-modal">
     <img id="modal-img" src="" alt="Expanded View">
     <p>Tap anywhere to close ✖</p>
   </div>
 
   <script>
+  document.addEventListener('DOMContentLoaded', function () {
     const CORRECT_PIN = "0801";
     let currentPin = "";
 
@@ -615,6 +616,7 @@
     const heartSymbols = ['💖', '💕', '💗', '💓', '♥'];
 
     function spawnHeart() {
+      if (!heartsBg) return;
       const heart = document.createElement('div');
       heart.className = 'floating-heart';
       heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
@@ -628,11 +630,9 @@
       heart.style.animationDuration = duration + 's';
 
       heartsBg.appendChild(heart);
-
       setTimeout(() => heart.remove(), duration * 1000);
     }
 
-    // Kick off a steady stream of hearts
     setInterval(spawnHeart, 600);
     for (let i = 0; i < 8; i++) {
       setTimeout(spawnHeart, i * 300);
@@ -641,15 +641,22 @@
     /* ================= AUDIO ================= */
     function playAudio() {
       const music = document.getElementById('bg-music');
-      if (music.paused) {
-        music.play().catch(e => console.log("Auto-play blocked until user interaction"));
+      if (music && music.paused) {
+        music.play().catch(() => console.log("Auto-play blocked until user interaction"));
       }
     }
 
     /* ================= PASSCODE LOGIC ================= */
+    function updateDots() {
+      const dots = document.querySelectorAll('.pin-dot');
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('filled', idx < currentPin.length);
+      });
+    }
+
     function pressKey(num) {
       if (currentPin.length < 4) {
-        currentPin += num;
+        currentPin += String(num);
         updateDots();
       }
     }
@@ -659,31 +666,20 @@
       updateDots();
     }
 
-    function updateDots() {
-      const dots = document.querySelectorAll('.pin-dot');
-      dots.forEach((dot, idx) => {
-        if (idx < currentPin.length) {
-          dot.classList.add('filled');
-        } else {
-          dot.classList.remove('filled');
-        }
-      });
-    }
-
     function checkPin() {
       playAudio();
       const pinDisplay = document.getElementById('pin-display');
 
       if (currentPin === CORRECT_PIN) {
-        pinDisplay.classList.add('pin-success');
+        if (pinDisplay) pinDisplay.classList.add('pin-success');
         setTimeout(() => {
-          pinDisplay.classList.remove('pin-success');
+          if (pinDisplay) pinDisplay.classList.remove('pin-success');
           showScreen('screen-welcome');
-        }, 400);
+        }, 350);
       } else {
-        pinDisplay.classList.add('shake');
+        if (pinDisplay) pinDisplay.classList.add('shake');
         setTimeout(() => {
-          pinDisplay.classList.remove('shake');
+          if (pinDisplay) pinDisplay.classList.remove('shake');
           clearPin();
         }, 400);
       }
@@ -694,6 +690,7 @@
       playAudio();
       const current = document.querySelector('.screen.active');
       const next = document.getElementById(screenId);
+      if (!next) return;
 
       if (current && current.id !== screenId) {
         current.classList.remove('active');
@@ -704,22 +701,56 @@
         }, 250);
 
         setTimeout(() => {
+          next.style.display = '';
           next.classList.add('active');
         }, 220);
       } else {
+        next.style.display = '';
         next.classList.add('active');
       }
     }
 
     /* ================= IMAGE MODAL ================= */
     function expandImage(src) {
-      document.getElementById('modal-img').src = src;
-      document.getElementById('image-modal').classList.add('active-modal');
+      const modalImg = document.getElementById('modal-img');
+      const modal = document.getElementById('image-modal');
+      if (modalImg) modalImg.src = src;
+      if (modal) modal.classList.add('active-modal');
     }
 
     function closeImage() {
-      document.getElementById('image-modal').classList.remove('active-modal');
+      const modal = document.getElementById('image-modal');
+      if (modal) modal.classList.remove('active-modal');
     }
+
+    /* ================= WIRE UP EVENT LISTENERS ================= */
+    document.querySelectorAll('.btn-key').forEach(btn => {
+      btn.addEventListener('click', function () {
+        if (this.dataset.digit !== undefined) {
+          pressKey(this.dataset.digit);
+        } else if (this.dataset.action === 'clear') {
+          clearPin();
+        } else if (this.dataset.action === 'check') {
+          checkPin();
+        }
+      });
+    });
+
+    document.querySelectorAll('[data-goto]').forEach(el => {
+      el.addEventListener('click', function () {
+        showScreen(this.dataset.goto);
+      });
+    });
+
+    document.querySelectorAll('.photo-frame[data-img]').forEach(el => {
+      el.addEventListener('click', function () {
+        expandImage(this.dataset.img);
+      });
+    });
+
+    const modalEl = document.getElementById('image-modal');
+    if (modalEl) modalEl.addEventListener('click', closeImage);
+  });
   </script>
 </body>
 </html>
