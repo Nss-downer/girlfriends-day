@@ -693,4 +693,33 @@
     function showScreen(screenId) {
       playAudio();
       const current = document.querySelector('.screen.active');
-      const next = document.getElementBy
+      const next = document.getElementById(screenId);
+
+      if (current && current.id !== screenId) {
+        current.classList.remove('active');
+        current.classList.add('leaving');
+        setTimeout(() => {
+          current.classList.remove('leaving');
+          current.style.display = 'none';
+        }, 250);
+
+        setTimeout(() => {
+          next.classList.add('active');
+        }, 220);
+      } else {
+        next.classList.add('active');
+      }
+    }
+
+    /* ================= IMAGE MODAL ================= */
+    function expandImage(src) {
+      document.getElementById('modal-img').src = src;
+      document.getElementById('image-modal').classList.add('active-modal');
+    }
+
+    function closeImage() {
+      document.getElementById('image-modal').classList.remove('active-modal');
+    }
+  </script>
+</body>
+</html>
